@@ -4,6 +4,7 @@
 
 During your first year at my school, we all learn C from the bottom.<br>
 The goal is to learn the basics of programmation which is why often, you can't use most of the libC functions.
+So yes it means you'll have to code your own ;)
 
 ## The Function
 
