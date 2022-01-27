@@ -28,7 +28,7 @@ MAIN		=	main.c
 
 SRC			=	$(addprefix , $(SRC_FILES))		\
 
-TESTS		=	$(addprefix tests/, $(TEST_FILES))		\
+TESTS		=	$(addprefix , $(TEST_FILES))		\
 
 #######################################
 
