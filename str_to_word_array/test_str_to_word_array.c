@@ -16,11 +16,6 @@ Test(str_to_word_array, null_params)
     cr_assert(str_to_word_array("", "") == NULL);
 }
 
-Test(str_to_word_array, null_separator)
-{
-    cr_assert_str_eq(basic_words, *(str_to_word_array(basic_words, "")));
-}
-
 Test(str_to_word_array, single_separator)
 {
     char **array = str_to_word_array(basic_words, " ");

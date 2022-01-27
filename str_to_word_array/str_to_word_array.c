@@ -16,22 +16,16 @@ bool detect_separator(char const ch, char const * const separators)
     return false;
 }
 
-bool find_word(int *i, char const * const str, char const * const separators)
-{
-    if (detect_separator(str[*i], separators))
-        return false;
-    while (detect_separator(str[*i], separators) == false) {
-        (*i)++;
-    }
-    return true;
-}
-
 unsigned int count_words(char const * const str, char const * const separators)
 {
     int nb_words = 0;
 
     for (int i = 0;str[i]; i++) {
-        nb_words += find_word(&i, str, separators);
+        if (detect_separator(str[i], separators))
+            continue;
+        nb_words++;
+        while (detect_separator(str[i], separators) == false)
+            i++;
     }
     return nb_words;
 }
@@ -58,7 +52,7 @@ char **extract_words(char **words, char const * const str, char const * const se
     unsigned int word_i = 0;
 
     for (unsigned int i = 0; str[i]; i++) {
-        if (detect_separator(str[i], separators) == true) 
+        if (detect_separator(str[i], separators)) 
             continue;
         words[word_i] = extract_word(&i, str, separators);
         if (words[word_i] == NULL)
