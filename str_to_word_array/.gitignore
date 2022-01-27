@@ -1,0 +1,4 @@
+*.o
+*.gc*
+*~
+str_to_word_array
