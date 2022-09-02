@@ -1,17 +1,41 @@
 #include <ncurses.h>
+#include <stdio.h>
+#include <unistd.h>
+
+#include "snake.h"
+
+
+int put_ret_error(char *error_msg)
+{
+    dprintf(2, "error: %s\n", error_msg);
+    return 84;
+}
+
+void init_ncurses()
+{
+    initscr();
+    keypad(stdscr, TRUE);
+    noecho();
+}
 
 int main()
 {
-    initscr();
-    WINDOW *win = newwin(15, 17, 2, 10);
-    refresh();
+    snake_s *s = create_snake();
 
-    box(win, 0, 0);
-    mvwprintw(win, 1, 1, "Hello,");
-    mvwprintw(win, 2, 1, "World!");
-    wrefresh(win);
-
-    getch();
-    endwin();
+    // init_ncurses();
+    if (s == NULL)
+        return put_ret_error("invalid snake alloc");
+    dump_snake(s);
+    for (int i = 0; i < 1; i++) {
+        usleep(100000);
+        update_snake(s);
+        dump_snake(s);
+        //clear();
+        //mvprintw(0, i, "8===D");
+        //refresh();
+    }
+    destroy_snake(s);
+    //refresh();
+    //endwin();
     return 0;
 }
